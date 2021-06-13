@@ -1,9 +1,16 @@
 nav {
-  background-color: rgb(25, 118, 210);
   margin: 5px;
+  font-weight: bolder;
 }
 
 nav a {
+  color: rgb(25, 118, 210);
   margin: 10px;
   text-decoration: none;
+}
+
+.Counter {
+  border: 1px dotted gray;
+  background-color: beige;
+  padding: 5px;
 }

@@ -35,22 +35,24 @@ const RoutingInReact = () => {
 
   return (
     <Router>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/controls">Controls</Link>
-      </nav>
-      <Switch>
-        <Route path="/controls">
-          <Controls
-            increaseCount={increaseCount}
-            decreaseCount={decreaseCount}
-            count={count}
-          />
-        </Route>
-        <Route path="/">
-          <Home count={count} />
-        </Route>
-      </Switch>
+      <div className="Counter">
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/controls">Controls</Link>
+        </nav>
+        <Switch>
+          <Route path="/controls">
+            <Controls
+              increaseCount={increaseCount}
+              decreaseCount={decreaseCount}
+              count={count}
+            />
+          </Route>
+          <Route path="/">
+            <Home count={count} />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 };
