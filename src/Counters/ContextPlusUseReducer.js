@@ -1,43 +1,36 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { createContext, useContext, useReducer } from "react";
-import "./Counters.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { createContext, useContext, useReducer } from "react"
+import Header from "./Header"
+import "./Counters.css"
+import Button from "./Button"
 
-const initialState = 0;
+const initialState = 0
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREMENT":
-      return state + 1;
+      return state + 1
     case "DECREMENT":
-      return state - 1 >= 0 ? state - 1 : 0;
+      return state - 1 >= 0 ? state - 1 : 0
     default:
-      return state;
+      return state
   }
-};
+}
 
-const CountContext = createContext(null);
+const CountContext = createContext(null)
 
 const useCount = () => {
-  const value = useContext(CountContext);
-  if (value === null) throw new Error("CountProvider missing");
-  return value;
+  const value = useContext(CountContext)
+  if (value === null) throw new Error("CountProvider missing")
+  return value
 };
 
-const CountProvider = ({ children }) => (
-  <CountContext.Provider value={useReducer(reducer, initialState)}>
-    {children}
-  </CountContext.Provider>
-);
+const CountProvider = ({ children }) => <CountContext.Provider value={useReducer(reducer, initialState)}>{children}</CountContext.Provider>
 
-const Header = ({ text }) => <h1>{text}</h1>;
-
-const Button = ({ label, onClick }) => (
-  <button onClick={onClick}>{label}</button>
-);
 
 const Home = () => {
-  const [state] = useCount();
-  return <Header text={state} />;
+  const [state] = useCount()
+  return <Header text={state} />
 };
 
 const Controls = () => {
@@ -50,11 +43,10 @@ const Controls = () => {
       ) : null}
       <Button onClick={() => dispatch({ type: "INCREMENT" })} label="+" />
     </>
-  );
-};
+  )
+}
 
-const ContextPlusUseReducer = () => {
-  return (
+const ContextPlusUseReducer = () => (
     <CountProvider>
       <Router>
         <div className="Counter">
@@ -73,7 +65,6 @@ const ContextPlusUseReducer = () => {
         </div>
       </Router>
     </CountProvider>
-  );
-};
+)
 
-export default ContextPlusUseReducer;
+export default ContextPlusUseReducer

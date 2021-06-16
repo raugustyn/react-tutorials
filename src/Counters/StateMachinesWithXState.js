@@ -1,7 +1,9 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useMachine } from "@xstate/react";
-import { createMachine, assign } from "xstate";
-import "./Counters.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { useMachine } from "@xstate/react"
+import { createMachine, assign } from "xstate"
+import "./Counters.css"
+import Header from "./Header"
+import Button from "./Button"
 
 export const counterMachine = createMachine({
   initial: "active",
@@ -23,30 +25,26 @@ export const counterMachine = createMachine({
   }
 });
 
-const Header = ({ text }) => <h1>{text}</h1>;
 
-const Button = ({ label, onClick }) => (
-  <button onClick={onClick}>{label}</button>
-);
+
 
 const Home = () => {
-  const [state] = useMachine(counterMachine);
-  return <Header text={state.context.count} />;
-};
+  const [state] = useMachine(counterMachine)
+  return <Header text={state.context.count} />
+}
 
 const Controls = () => {
-  const [state, send] = useMachine(counterMachine);
+  const [state, send] = useMachine(counterMachine)
   return (
     <>
       <Header text={state.context.count} />
       <Button onClick={() => send("DECREMENT")} label="-" />
       <Button onClick={() => send("INCREMENT")} label="+" />
     </>
-  );
-};
+  )
+}
 
-const StateMachinesWithXState = () => {
-  return (
+const StateMachinesWithXState = () => (
     <Router>
       <div className="Counter">
         <nav>
@@ -63,7 +61,6 @@ const StateMachinesWithXState = () => {
         </Switch>
       </div>
     </Router>
-  );
-};
+)
 
-export default StateMachinesWithXState;
+export default StateMachinesWithXState

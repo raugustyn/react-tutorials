@@ -1,35 +1,28 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState } from "react";
-import "./Counters.css";
+import "./Counters.css"
+import Header from "./Header"
+import Button from "./Button"
 
-const Header = ({ text }) => <h1>{text}</h1>;
+const Home = ({ count }) => <Header text={count} />
 
-const Button = ({ label, onClick }) => (
-  <button onClick={onClick}>{label}</button>
-);
-
-const Home = ({ count }) => {
-  return <Header text={count} />;
-};
-
-const Controls = ({ count, decreaseCount, increaseCount }) => {
-  return (
+const Controls = ({ count, decreaseCount, increaseCount }) => (
     <div>
       <Header text={count} />
       <Button onClick={decreaseCount} label="-" />
       <Button onClick={increaseCount} label="+" />
     </div>
-  );
-};
+  )
+
 
 const RoutingInReact = () => {
   const [count, setCount] = useState(0);
   const increaseCount = () => {
-    setCount(count + 1);
+    setCount(count + 1)
   };
   const decreaseCount = () => {
     if (count > 0) {
-      setCount(count - 1);
+      setCount(count - 1)
     }
   };
 
@@ -54,7 +47,7 @@ const RoutingInReact = () => {
         </Switch>
       </div>
     </Router>
-  );
-};
+  )
+}
 
-export default RoutingInReact;
+export default RoutingInReact
